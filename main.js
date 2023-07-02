@@ -7,26 +7,49 @@ const cartMenuIcon = document.querySelector('.navbar-shopping-cart');
 const shoppingCart = document.querySelector('#shoppingCart-container');
 const cardsContainer = document.querySelector('.cards-container');
 
+const productdetailContainer =document.querySelector('#product-detail');
+const productDetailClose = document.querySelector(".product-detail-close");
 
 menuEmail.addEventListener('click', toggleDesktopMenu);
 burgerMenu.addEventListener('click', toggleMobileMenu);
 cartMenuIcon.addEventListener('click', toggleCart);
+productDetailClose.addEventListener('click',closeProductDetail);
 
 function toggleDesktopMenu(){
-    
+    productdetailContainer.classList.add('inactive');
+    shoppingCart.classList.add("inactive");
     desktopMenu.classList.toggle('inactive');
 }
 
 function toggleMobileMenu(){
-    shoppingCart.classList.add('inactive')
+    productdetailContainer.classList.add('inactive');
+    shoppingCart.classList.add('inactive');
     mobileMenu.classList.toggle('inactive');
 }
 
 function toggleCart(){
+
+    productdetailContainer.classList.add('inactive');
+    desktopMenu.classList.add('inactive');
     mobileMenu.classList.add('inactive');
     shoppingCart.classList.toggle('inactive');
 
 }
+
+
+
+
+function openProductDetail(){
+    shoppingCart.classList.add('inactive');
+    desktopMenu.classList.add('inactive');
+    mobileMenu.classList.add('inactive');
+    productdetailContainer.classList.remove('inactive')
+}
+
+function closeProductDetail(){
+    productdetailContainer.classList.add('inactive')
+}
+
 
 const productList = [];
 
@@ -83,8 +106,9 @@ function renderProducts(arr){
         productCard.classList.add('product-card');
         
         const img = document.createElement('img');
-        img.setAttribute('src', product.image)
-        
+        img.setAttribute('src', product.image);
+        img.addEventListener('click', openProductDetail);
+
         const productInfo = document.createElement('div');
         productInfo.classList.add('product-info');
         
